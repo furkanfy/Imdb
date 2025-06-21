@@ -30,7 +30,6 @@ Bu projede, IMDB film yorumları veri seti üzerinde doğal dil işleme (NLP) te
 
 4. **Analiz:**
    - TF-IDF değerlerine göre en anlamlı kelimeler
-   - Doğruluk, f1-score gibi değerlendirme metrikleri
 
 ---
 
