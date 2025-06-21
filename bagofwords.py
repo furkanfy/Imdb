@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from collections import Counter
 from nltk.corpus import stopwords
 import nltk
+import matplotlib.pyplot as plt
 
 # CSV dosyasını oku
 df = pd.read_csv('C:/Users/ASUS/Documents/imdb_dataset/IMDB_Dataset.csv')
@@ -17,7 +18,7 @@ labels = df["sentiment"]
 nltk.download('stopwords')
 stop_words = set(stopwords.words("english"))
 
-# Metin temizleme fonksiyonu (düzeltilmiş)
+# Metin temizleme fonksiyonu 
 def clean_text(text):
     text = text.lower()
     text = re.sub(r'\d+', '', text)
@@ -48,4 +49,10 @@ word_freq = dict(zip(feature_names, word_count))
 
 # En sık 5 kelimeyi bul ve yazdır
 most_common_5_words = Counter(word_freq).most_common(5)
-print(f"En sık 5 kelime: {most_common_5_words}")
+
+words, counts = zip(*most_common_5_words)
+plt.bar(words, counts)
+plt.title("En Sık 5 Kelime")
+plt.xlabel("Kelime")
+plt.ylabel("Frekans")
+plt.show()
