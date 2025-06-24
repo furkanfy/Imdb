@@ -1,32 +1,58 @@
-# 🎬 IMDB Review Analysis with Bag of Words
+# 🎬 IMDB Film Yorumları Üzerine Metin Analizi
 
-Bu projede, IMDB film yorumları veri seti üzerinde temel doğal dil işleme (NLP) teknikleri uygulanmıştır. Amaç, yorumları temizleyerek Bag of Words yöntemiyle sayısal temsillerini elde etmek ve temel analiz yapmaktır.
+Bu projede, IMDB film yorumları veri seti üzerinde doğal dil işleme (NLP) teknikleri uygulanarak metinler sayısal verilere dönüştürülmüştür. Hem **Bag of Words (BoW)** hem de **TF-IDF** yöntemleri ile vektörleştirme gerçekleştirilmiştir. Amaç, temel metin ön işleme tekniklerini uygulayıp, farklı vektörleme yöntemlerini karşılaştırmaktır.
 
-## 🧰 Kullanılan Yöntemler
+---
 
-- Metin temizleme (`lowercase`, sayıları kaldırma, noktalama temizleme, stopwords çıkarma)
-- `CountVectorizer` ile vektörleme (Bag of Words)
-- Kelime frekans analizi (`Counter` ile en sık geçen kelimeler)
-
-## 🗂 Veri Seti
+## 📂 Veri Seti
 
 - **Kaynak:** [Kaggle - IMDB Dataset](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
-- **Özellikler:**  
-  - `review`: Film yorumu (metin)  
+- **Veri:**  
+  - `review`: Film yorumu  
   - `sentiment`: Pozitif veya negatif etiket
 
-## 📊 Örnek Çıktı
+---
 
-- İlk 50 yorum vektörleştirildi  
-- Vektör matrisi şekli: `(50, kelime_sayısı)`  
-- En sık geçen kelimeler: `great`, `movie`, `film`, ...
+## 🧪 Uygulanan Adımlar
 
-## 🔜 Gelecek Geliştirme
+1. **Veri Temizleme:**
+   - Küçük harfe çevirme
+   - Noktalama ve sayıları kaldırma
+   - Stopwords (gereksiz kelimeler) çıkarma
+   - Tokenization
 
-- TF-IDF ile karşılaştırma yapılabilir  
-- `MultinomialNB` ile basit sınıflandırma modeli kurulabilir  
-- ROC eğrisi ve f1-score ile performans değerlendirmesi yapılabilir
+2. **Vektörleştirme:**
+   - `CountVectorizer` ile Bag of Words (BoW)
+   - `TfidfVectorizer` ile TF-IDF
+
+3. **Modelleme (TF-IDF ile):**
+   - `MultinomialNB` modeli ile yorum sınıflandırma (pozitif/negatif)
+
+4. **Analiz:**
+   - TF-IDF değerlerine göre en anlamlı kelimeler
+
+---
+
+## ⚖️ Bag of Words vs TF-IDF
+
+### 🟦 Bag of Words (BoW)
+- Yalnızca kelimenin kaç kez geçtiğine bakar.
+- Örneğin “film çok güzeldi” → “film”: 1, “çok”: 1, “güzeldi”: 1
+- Bütün yorumlarda sık geçen kelimeleri **fazla önemli sanabilir**
+
+### 🟩 TF-IDF (Term Frequency-Inverse Document Frequency)
+- Kelimenin hem sıklığına hem de tüm belgelerdeki yaygınlığına bakar.
+- “film” her yorumda geçiyorsa önemi düşer, ama “büyüleyici” sadece bazı yorumlarda geçiyorsa önemi yükselir.
+- Bu yüzden **daha anlamlı kelimelere** dikkat çeker.
+
+### 🎯 Sonuç
+TF-IDF, yorumlardaki “daha anlamlı ve ayrıştırıcı” kelimelere ağırlık verdiği için genellikle daha başarılı sonuç verir.
+
+---
 
 ## 👨‍💻 Geliştirici
+
 **Furkan Yılmaz**  
-Yapay zeka ve doğal dil işleme konularında projeler geliştiriyor.
+Yapay zeka, makine öğrenmesi ve doğal dil işleme alanlarında öğrenmeye ve üretmeye devam ediyor.
+
+---
